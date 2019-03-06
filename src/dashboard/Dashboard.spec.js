@@ -23,4 +23,13 @@ describe("app functionality", () => {
     fireEvent.click(gateButton);
     expect(gateMock).toHaveBeenCalled();
   });
+  it("lock button should fire if gate is closed", () => {
+    const lockMock = jest.fn();
+    const { getByTestId } = render(
+      <Controls closed={true} toggleLocked={lockMock} />
+    );
+    const lockButton = getByTestId("lock-button");
+    fireEvent.click(lockButton);
+    expect(lockMock).toHaveBeenCalled();
+  });
 });
