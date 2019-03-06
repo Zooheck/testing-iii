@@ -32,4 +32,11 @@ describe("app functionality", () => {
     fireEvent.click(lockButton);
     expect(lockMock).toHaveBeenCalled();
   });
+  it("gate should open and close when unlocked", () => {
+    const { getByTestId } = render(<Controls locked={false} />);
+    const { getByText } = render(<Display closed={true} />);
+
+    const gateStatus = getByText(/closed/i);
+    expect(gateStatus.textContent).toBe("Closed");
+  });
 });
