@@ -6,7 +6,7 @@ import "react-testing-library/cleanup-after-each";
 
 import Controls from "./Controls";
 
-describe("controls being disabled", () => {
+describe("gate controls being disabled", () => {
   it("gate button should be disabled when closed and locked", () => {
     const { getByTestId } = render(<Controls locked={true} closed={true} />);
     const gateButton = getByTestId("gate-button");
@@ -18,5 +18,14 @@ describe("controls being disabled", () => {
     const gateButton = getByTestId("gate-button");
 
     expect(gateButton).not.toBeDisabled();
+  });
+});
+
+describe("lock controls being disabled", () => {
+  it("lock button should be disabled when gate is open", () => {
+    const { getByTestId } = render(<Controls locked={false} closed={false} />);
+
+    const lockButton = getByTestId("lock-button");
+    expect(lockButton).toBeDisabled();
   });
 });
